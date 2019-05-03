@@ -1,0 +1,18 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: k8s-logging-deployment
+spec:
+  selector:
+    matchLabels:
+      app: k8s-logging
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: k8s-logging
+    spec:
+      containers:
+        - name: k8s-logging-container
+          image: k8s-logging:0.0.1
+          imagePullPolicy: IfNotPresent
