@@ -21,6 +21,8 @@ data:
       port 9200
       scheme http
       logstash_format true
+      time_key timestamp
+      time_key_exclude_timestamp true
       logstash_prefix fluentd
       flush_interval 1s
     </match>
