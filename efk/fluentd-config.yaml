@@ -12,13 +12,11 @@ data:
       @type parser
       format json
       key_name log
+      reserve_data true
     </filter>
 
     <match **>
       @type elasticsearch
-      @id out_es
-      @log_level info
-      include_tag_key true
       host elasticsearch.kube-logging.svc.cluster.local
       port 9200
       scheme http
