@@ -20,17 +20,17 @@ object App
     implicit val actorSystem: ActorSystem = ActorSystem(BuildInfo.name)
     implicit val executionContextExecutor: ExecutionContextExecutor = actorSystem.dispatcher
 
-    actorSystem.scheduler.schedule(0 milliseconds, 100 milliseconds) {
+    actorSystem.scheduler.schedule(0 seconds, 1 second) {
       val user = Random[User]
       implicit val requestContext: RequestContext = RequestContext(UUID.randomUUID().toString, user.username, user.email)
 
       logger.info(s"${user.username} said: ${Random.quotes.generate()}")
 
-      schedule(200 milliseconds) {
+      schedule(2 seconds) {
         logger.info(s"${user.username} said good-bye")
       }
 
-      schedule(300 milliseconds) {
+      schedule(3 seconds) {
         logger.warn(s"${user.username} exited")
       }
     }

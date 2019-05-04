@@ -6,6 +6,8 @@ services:
     build: .
     depends_on:
       - fluentd
+    volumes:
+      - "./target/scala-2.12/k8s-logging-assembly.jar:/opt/k8s-logging/k8s-logging-assembly.jar"
     logging:
       driver: fluentd
       options:

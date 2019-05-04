@@ -20,17 +20,9 @@ data:
       host elasticsearch.kube-logging.svc.cluster.local
       port 9200
       scheme http
-      ssl_verify true
-      reload_connections true
-      logstash_prefix fluentd
       logstash_format true
-      type_name fluentd
-      buffer_chunk_limit 2M
-      buffer_queue_limit 32
-      flush_interval 5s
-      max_retry_wait 30
-      disable_retry_limit
-      num_threads 4
+      logstash_prefix fluentd
+      flush_interval 1s
     </match>
   kubernetes.conf: |-
     <match fluent.**>
