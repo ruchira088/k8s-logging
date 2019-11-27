@@ -1,0 +1,12 @@
+---
+- hosts: localhost
+  connection: local
+
+  tasks:
+    - name: Build production application
+      command: sbt clean universal:packageZipTarball
+
+    - name: Build production Docker image
+      command: docker build -t k8s-logging:1.0.0 -f Dockerfile .
+
+

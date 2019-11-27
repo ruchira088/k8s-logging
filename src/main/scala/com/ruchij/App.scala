@@ -12,27 +12,34 @@ import scala.concurrent.duration._
 import scala.concurrent.{ExecutionContext, ExecutionContextExecutor}
 import scala.language.postfixOps
 
-object App
-{
+object App {
+
   private val logger = CustomLogger[App.type]
 
   def main(args: Array[String]): Unit = {
     implicit val actorSystem: ActorSystem = ActorSystem(BuildInfo.name)
     implicit val executionContextExecutor: ExecutionContextExecutor = actorSystem.dispatcher
 
-    actorSystem.scheduler.schedule(0 seconds, 1 second) {
-      val user = Random[User]
-      implicit val requestContext: RequestContext = RequestContext(UUID.randomUUID().toString, user.username, user.email)
+    actorSystem.scheduler.scheduleWithFixedDelay(0 seconds, 1 second) {
+      () =>
+        val user = Random[User].generate()
+        val uuid = Random[UUID].generate()
 
-      logger.info(s"${user.username} said: ${Random.quotes.generate()}")
+        implicit val requestContext: RequestContext = RequestContext(uuid.toString, user.username, user.email)
 
-      schedule(2 seconds) {
-        logger.info(s"${user.username} said good-bye")
-      }
+        logger.info(s"${user.username} entered the venue")
 
-      schedule(3 seconds) {
-        logger.warn(s"${user.username} exited")
-      }
+        schedule( 1 second) {
+          logger.info(s"${user.username} said: ${Random.quotes.generate()}")
+        }
+
+        schedule(2 seconds) {
+          logger.info(s"${user.username} said good-bye")
+        }
+
+        schedule(3 seconds) {
+          logger.warn(s"${user.username} exited")
+        }
     }
 
     logger.info("Application started.")(RequestContext("system-context", "system-user", "N/A"))

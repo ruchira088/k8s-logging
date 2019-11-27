@@ -14,8 +14,6 @@ kubectl apply -f efk/
 
 eval $(minikube docker-env)
 
-sbt clean compile assembly
-
-docker build -t k8s-logging:0.0.1 .
+ansible-playbook build-docker.yml
 
 kubectl apply -f deploy/deployment.yaml

@@ -2,7 +2,7 @@ import Dependencies._
 
 lazy val root =
   (project in file("."))
-    .enablePlugins(BuildInfoPlugin)
+    .enablePlugins(BuildInfoPlugin, JavaAppPackaging)
     .settings(
       name := "k8s-logging",
       organization := "com.ruchij",
@@ -10,7 +10,7 @@ lazy val root =
       libraryDependencies ++= rootDependencies ++ rootTestDependencies.map(_ % Test),
       buildInfoKeys := BuildInfoKey.ofN(name, organization, version, scalaVersion, sbtVersion),
       buildInfoPackage := "com.eed3si9n.ruchij",
-      assemblyJarName in assembly := "k8s-logging-assembly.jar",
+      topLevelDirectory := None,
       testOptions in Test +=
         Tests.Argument(TestFrameworks.ScalaTest, "-h", "target/test-results")
     )
