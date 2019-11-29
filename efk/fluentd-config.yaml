@@ -20,6 +20,8 @@ data:
       host elasticsearch.kube-logging.svc.cluster.local
       port 9200
       scheme http
+      user elastic
+      password nKKJdJPr3J9kmFPJgV49Lw8yoPxUE
       logstash_format true
       time_key timestamp
       time_key_exclude_timestamp true

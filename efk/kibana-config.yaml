@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  namespace: kube-logging
+  name: kibana-config
+data:
+  kibana.yml: |
+    elasticsearch.hosts: http://elasticsearch:9200
+    elasticsearch.username: elastic
+    elasticsearch.password: nKKJdJPr3J9kmFPJgV49Lw8yoPxUE
+    server.host: 0.0.0.0

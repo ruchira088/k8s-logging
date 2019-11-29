@@ -1,0 +1,4 @@
+elasticsearch.hosts: http://elasticsearch:9200
+elasticsearch.username: elastic
+elasticsearch.password: nKKJdJPr3J9kmFPJgV49Lw8yoPxUE
+server.host: 0.0.0.0

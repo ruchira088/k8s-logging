@@ -70,9 +70,9 @@ spec:
             - name: FLUENT_UID
               value: "0"
             - name: FLUENT_ELASTICSEARCH_USER
-              value: none
+              value: "elastic"
             - name: FLUENT_ELASTICSEARCH_PASSWORD
-              value: none
+              value: "nKKJdJPr3J9kmFPJgV49Lw8yoPxUE"
           resources:
             limits:
               memory: 512Mi
