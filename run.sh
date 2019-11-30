@@ -10,6 +10,9 @@ echo "Successfully started minikube"
 echo "Installing the EFK stack"
 kubectl apply -f efk/kube-logging.yaml
 
+kubectl apply -f efk/fluentd-config.yaml
+kubectl apply -f efk/kibana-config.yaml
+
 kubectl apply -f efk/
 
 eval $(minikube docker-env)
